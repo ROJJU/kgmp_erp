@@ -1,0 +1,27 @@
+@CHARSET "EUC-KR";
+div#content{border:solid 1px #f5f6f7;}
+			#titlePlace{position:relative; height:80px;}
+			#noticeTitle{position:relative; top: 10px; left:80px; width:100px;}
+			#bottons{position:relative; left:265px; top:20px; width:200px;}
+			#tablePlace2{margin:0 auto; width:720px;}
+			table{
+			  border-collapse:collapse;
+			  border-bottom:1px solid grey;
+			  font-family:"¸¼Àº °íµñ";
+			  font-size:11px;
+			  color:#333;
+			 }
+			 table th,td{
+			  padding:6px;
+			 }
+			 table th{
+			  border-bottom-width:2px;
+			  border-bottom-style:solid;
+			  border-bottom-color:grey;
+			  font-size:1.1em;
+			 }
+			 table td{
+			  border-bottom-width:1px;
+			  border-bottom-style:dotted;
+			  border-bottom-color:grey;
+			 }

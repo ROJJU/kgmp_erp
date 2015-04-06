@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Message_Mapper">
+	<insert id="insertMessage" parameterType="msg">
+		insert into message values(msg_seq.nextval, #{writer}, #{send0}, #{content}, 1, #{writer_id}, sysdate, #{add_time}, 0, '0', '0', #{month}, 0, 0)
+	</insert>
+	<select id="checkState" parameterType="String" resultType="int">
+		select max(state) from message where send0=#{writer}
+	</select>
+	<update id="offMsg" parameterType="Map" >
+		update message set state=0 where send0=#{writer} and msg_seq=#{msg_seq}
+	</update>
+	<select id="newMsg" parameterType="String" resultType="msg">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from message ORDER BY msg_seq DESC) where send0=#{writer} and state=1) a) WHERE rn BETWEEN 1 AND 1
+	</select>
+	<select id="getMsgQty" parameterType="Map" resultType="int">
+		select count(*) from message where send0=#{send0}
+	</select>
+	<select id="getMsgList" parameterType="Map" resultType="msg">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from message ORDER BY msg_seq DESC) where send0=#{send0} and save=0) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="sendMsgQty"  parameterType="Map" resultType="int">
+		select count(*) from message where writer=#{writer} and trash=0
+	</select>
+	<select id="sendMsgList"  parameterType="Map" resultType="msg">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from message ORDER BY msg_seq DESC) where writer=#{writer} and trash=0) a) WHERE rn BETWEEN #{startNum} AND #{endNum} 
+	</select>
+	<select id="selectMsg" parameterType="int" resultType="msg">
+		select * from message where msg_seq=#{msg_seq}
+	</select>
+	<update id="ReadCheckMsg" parameterType="Map">
+		update message set chk_date=sysdate, chk_time=#{chk_time}, msg_state=1 where msg_seq=#{msg_seq}
+	</update>
+	<delete id="delMsg" parameterType="int">
+		delete message where msg_seq=#{msg_seq}
+	</delete>
+	<select id="countGetMsg" resultType="int" parameterType="String">
+		select count(*) from message where send0=#{writer} and msg_state=0
+	</select>
+	<update id="saveMsg" parameterType="int">
+		update message set save=1 where msg_seq=#{msg_seq}
+	</update>
+	<select id="getSaveMsgQty" parameterType="Map" resultType="int">
+		select count(*) from message where send0=#{send0} and save=1
+	</select>
+	<select id="getSaveMsgList" parameterType="Map" resultType="msg">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from message ORDER BY msg_seq DESC) where send0=#{send0} and save=1) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<update id="goTrash" parameterType="int">
+		update message set trash=1 where msg_seq=#{msg_seq}
+	</update>
+	<select id="getTrashMsgQty" parameterType="Map" resultType="int">
+		select count(*) from message where writer=#{writer} and trash=1
+	</select>
+	<select id="getTrashMsgList" parameterType="Map" resultType="msg">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from message ORDER BY msg_seq DESC) where writer=#{writer} and trash=1) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<delete id="autoDel" parameterType="int">
+		delete message where month=#{month} and save=0
+	</delete>
+</mapper>

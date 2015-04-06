@@ -1,0 +1,15 @@
+@CHARSET "EUC-KR";
+#pageTitle{position:relative; top: 30px; left:38px; width:500px; border-top:1px solid #C0C0C0; border-bottom:1px solid #C0C0C0; background-color:#EAEAEA; padding:3px;}
+			div.{border:solid 1px red;}
+			#titlePlace{position:relative; height:110px;}
+			#CDTitle{position:relative; top: 50px; left:50px; width:300px;}
+			#ViewList{position:relative;width:300px;}
+			table.CD{width:820px; }
+			table.CD th{background-color:#D5D5D5; width:140px;}
+			table.CD td{width:240px;}
+			#buttonPlace{position:relative; height:80px;}
+			#buttons{position:relative; left:670px; top:20px; width:230px;}
+			#CDTable{width:820px; margin:0 auto;}
+			a{text-decoration:none;}
+			#del{position:absolute; top:18px; left:60px;}
+			select, input, img, input.type-image{/* border: 0 none; */ vertical-align:middle;}

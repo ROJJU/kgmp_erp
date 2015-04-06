@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Schedule_Mapper">
+	<insert id="insertSchedule" parameterType="schedule">
+		insert into schedule values(schedule_seq.nextval, #{year}, #{month}, #{day}, #{f_hour}, #{f_min}, #{s_hour}, #{s_min}, #{type}, #{title}, #{location}, #{content}, #{writer}, #{emp_pic}, #{alram}, '0', '0', 0, 1, '0', 0, #{id})
+	</insert>
+	<select id="getSchedule" resultType="schedule">
+		select distinct writer, year, month, day from schedule where state=1
+	</select>
+	<select id="countSchedule" parameterType="Map" resultType="int">
+		select count (*) from schedule where writer=#{writer} and year=#{year} and month=#{month} and day =#{day} and state=1
+	</select>
+	<select id="getList" parameterType="Map" resultType="schedule">
+		select * from schedule where writer=#{writer} and year=#{year} and month=#{month} and day =#{day} and state=1
+	</select>
+	<select id="selectSchedule" parameterType="int" resultType="schedule">
+		select * from schedule where schedule_seq=#{schedule_seq}
+	</select>
+	<delete id="delSchedule" parameterType="int" >
+		delete schedule where schedule_seq=#{schedule_seq}
+	</delete>
+	<select id="getSideSchedule" resultType="schedule" parameterType="Map">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from schedule ORDER BY schedule_seq DESC) where writer=#{writer} and year=#{year} and month=#{month} and day =#{day}) a) WHERE rn BETWEEN 1 AND 5
+	</select>
+	<select id="getMainSchedule" resultType="schedule" >
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from schedule ORDER BY day) where state=1) a) WHERE rn BETWEEN 1 AND 6
+	</select>
+	<select id="getWeekSchedule" resultType="schedule" parameterType="Map">
+		select * from schedule where year=#{year} and month=#{month} and state=1
+	</select>
+	<update id="modifySchedule" parameterType="schedule">
+		update schedule set  f_hour=#{f_hour}, f_min=#{f_min}, s_hour=#{s_hour}, s_min=#{s_min}, type=#{type}, title=#{title}, content=#{content}, location=#{location}, alram=#{alram} where schedule_seq=#{schedule_seq}
+	</update>
+	<select id="checkAlram" parameterType="Map" resultType="int">
+		select max(alram) from schedule where writer=#{writer} and year=#{year} and month=#{month} and day=#{day}
+	</select>
+	<update id="offAlram" parameterType="Map" >
+		update schedule set alram=0 where writer=#{writer} and year=#{year} and month=#{month} and day=#{day}
+	</update>
+	<insert id="insertVacation" parameterType="schedule">
+		insert into schedule values(schedule_seq.nextval, #{year}, #{month}, #{day}, '00', '00', '00', '00', 2, #{title}, 'Vacation', #{content}, #{writer}, #{emp_pic}, 0, #{date2}, #{date_cal}, #{step}, 0, #{add_date}, #{date_check}, #{id})
+	</insert>
+	<select id="getVacationQty" resultType="int" >
+ 		select count(*) from (select * from schedule where writer LIKE '%'||#{find}||'%') where type=2 and step=1
+ 	</select>
+ 	<select id="getVacationList" parameterType="Map" resultType="schedule">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from schedule WHERE  writer LIKE '%'||#{find}||'%') where type=2 and step=1) a)	WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getSearch" parameterType="Map" resultType="schedule">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from schedule WHERE ${search} LIKE '%'||#{find}||'%' ORDER BY schedule_seq DESC) where type=2) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getSearchQty" resultType="int" parameterType="Map">
+		select count(*) from (select * from schedule where ${search} LIKE '%'||#{find}||'%') where type=2
+	</select>
+	<select id="printSche" parameterType="int" resultType="schedule">
+		select * from schedule where schedule_seq=#{schedule_seq}
+	</select>
+	<update id="modifyVacation" parameterType="schedule">
+		update schedule set year=#{year}, month=#{month}, day=#{day}, title=#{title}, content=#{content}, date2=#{date2}, date_cal=#{date_cal}, add_date=#{add_date} where schedule_seq=#{schedule_seq}
+	</update>
+	<update id="updateState" parameterType="Map">
+		update schedule set state = #{state} where schedule_seq=#{schedule_seq}
+	</update>
+	<select id="countVacation" parameterType="Map" resultType="double">
+		select SUM(date_cal) from schedule where step=1 and writer=#{writer} and year=#{nowYear} and state=1
+	</select>
+</mapper>

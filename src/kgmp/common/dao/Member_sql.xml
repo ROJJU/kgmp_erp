@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Member_Mapper">
+ 	<insert id="insertMember"  parameterType="member">
+ 		insert into member values(code_seq.nextval, #{department}, #{emp_type}, #{work_type}, #{w_level}, #{kor_name}, #{cha_name}, #{eng_name}, #{address}, #{phone1}, #{phone2}, #{phone3}, #{cell_phone1}, #{cell_phone2}, #{cell_phone3}, #{email1}, #{email2}, #{emp_pic}, #{id}, #{pw}, SYSDATE, '', 0, 4, #{vacation_year}, #{vacation_month})
+ 	</insert>
+ 	<select id="getCustomer" parameterType="member"  resultType="member">
+ 		select id from member where id = #{id}
+ 	</select>
+ 	<select id="getMember" parameterType="member"  resultType="member">
+ 		select *  from member where id=#{id} and pw=#{pw}
+ 	</select>
+ 	<select id="printVacation" parameterType="String" resultType="member">
+ 		select department, w_level from member where kor_name=#{writer}
+ 	</select>
+ 	<select id="getMemberQty" resultType="int" >
+ 		select count(*) from (select * from member where kor_name LIKE '%'||#{find}||'%' or department LIKE '%'||#{find}||'%' or w_level LIKE '%'||#{find}||'%')
+ 	</select>
+ 	<select id="getMemberList" parameterType="Map" resultType="member">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from member WHERE  kor_name LIKE '%'||#{find}||'%' or department LIKE '%'||#{find}||'%' or w_level LIKE '%'||#{find}||'%'  ORDER BY code_seq DESC)) a)	WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getSearch" parameterType="Map" resultType="member">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from member WHERE ${search} LIKE '%'||#{find}||'%' ORDER BY code_seq DESC)) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getSearchQty" resultType="int" parameterType="Map" >
+		select count(*) from (select * from member where ${search} LIKE '%'||#{find}||'%')
+	</select>
+	<select id="selectMmeber" parameterType="int" resultType="member">
+		select * from member where code_seq=#{code_seq}
+	</select>
+	<update id="insertSign" parameterType="member">
+		update member set member_sign=#{member_sign} where id=#{id}
+	</update>
+	<select id="printSign" parameterType="String" resultType="String">
+		select member_sign from member where id=#{id}
+	</select>
+	<select id="printAdmin" resultType="member">
+		select w_level, kor_name, id from member
+	</select>
+	<select id="getVacation" parameterType="Map" resultType="int">
+		select count(*) from member where vacation_year=#{year} and vacation_month=#{month} and id=#{id}
+	</select>
+	<update id="updateVacation" parameterType="Map">
+		update member set vacation_date=#{vacation_date}, vacation_month=#{month}, vacation_year=#{year} where id=#{id}
+	</update>
+	<select id="printDate" parameterType="String" resultType="member">
+		select vacation_date, vacation_year from member where id=#{id}
+	</select>
+</mapper>

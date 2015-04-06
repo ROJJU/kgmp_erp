@@ -1,0 +1,29 @@
+@CHARSET "EUC-KR";
+div.{border:solid 1px red;}
+body{margin:0; background:#f5f6f7; height:100%;}
+	html{height:100%;}
+			#titlePlace{position:relative; height:110px;}
+			#pageTitle{position:relative; top: 30px;  width:500px; border-top:1px solid #C0C0C0; border-bottom:1px solid #C0C0C0; background-color:#EAEAEA; padding:3px;}
+			#bottons{position:relative; left:370px; width:100px;}
+			#enter{position:absolute; top:0px; left:235px;}
+			#serch{position:relative; left:0px; top:100xp; width:240px;}
+			select, input, img, input.type-image{/* border: 0 none; */ vertical-align:middle;}
+			#serchPlace{position:absolute; top:0px; width:900px; top:80px;;}
+			#serch{position:relative; width:500px;}
+			#page{position:relative; left:363px; top:2px;;}
+			#add{position:absolute; left:490px; top:35px;}
+			a{text-decoration:none;}
+			#trash{position:absolute; left:760px;}
+	
+	#container{position:relative; width:1280px; font-size:12px;font-family:Arial, Helvetica, sans-serif; margin:0 auto;  min-height:86%;}
+	#content{position:relative; width:900px; left:235px; min-height:650px;}
+	#footer {position:relative; width:100%;  background:#EAEAEA;}
+	#flap{position:relative; width:1240px; margin:0 auto;}
+	.text{position:relative; font-family:맑은 고딕; font-size:11px; color:grey;}
+	#longLogo{position: absolute; left:1070px; top:1px;}
+	#con{position:relative; left:30px;}
+	.style{background-color:#EAEAEA;}
+	.ellipsis { width: 290px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; cursor:hand; cursor:pointer; } /*width만 바꾸면 사용가능!! ...*/
+	.email{width: 40px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; cursor:hand; cursor:pointer; }
+	.web{width: 40px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; cursor:hand; cursor:pointer; }
+	.company{width: 100px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; cursor:hand; cursor:pointer; }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Customer_Mapper">
+ 	<insert id="insertCustomer"  parameterType="customer">
+ 		insert into customer_db values(customer_seq.nextval, #{condition}, #{client_num, jdbcType=VARCHAR}, #{company_num, jdbcType=VARCHAR}, #{company, jdbcType=VARCHAR}, #{ceo, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}, #{bz_condition, jdbcType=VARCHAR}, #{type, jdbcType=VARCHAR}, #{site, jdbcType=VARCHAR}, #{main_part_name, jdbcType=VARCHAR}, #{sub_part_name, jdbcType=VARCHAR}, #{main_name, jdbcType=VARCHAR}, #{sub_name, jdbcType=VARCHAR}, #{main_phone1, jdbcType=VARCHAR}, #{main_phone2, jdbcType=VARCHAR}, #{main_phone3, jdbcType=VARCHAR}, #{sub_phone1, jdbcType=VARCHAR}, #{sub_phone2, jdbcType=VARCHAR}, #{sub_phone3, jdbcType=VARCHAR}, #{main_cell_phone1, jdbcType=VARCHAR}, #{main_cell_phone2, jdbcType=VARCHAR}, #{main_cell_phone3, jdbcType=VARCHAR},  #{sub_cell_phone1, jdbcType=VARCHAR}, #{sub_cell_phone2, jdbcType=VARCHAR}, #{sub_cell_phone3, jdbcType=VARCHAR}, #{main_fax1, jdbcType=VARCHAR}, #{main_fax2, jdbcType=VARCHAR}, #{main_fax3, jdbcType=VARCHAR},#{sub_fax1, jdbcType=VARCHAR}, #{sub_fax2, jdbcType=VARCHAR}, #{sub_fax3, jdbcType=VARCHAR}, #{main_email1, jdbcType=VARCHAR}, #{main_email2, jdbcType=VARCHAR}, #{sub_email1, jdbcType=VARCHAR}, #{sub_email2, jdbcType=VARCHAR}, #{member_name}, SYSDATE, #{state}, #{type_renewal}, #{address_p}, #{sort})
+ 	</insert>
+ 	<select id="getCustomersQty" resultType="int" >
+ 		select count(*) from (select * from customer_db where company LIKE '%'||#{find}||'%' or main_name LIKE '%'||#{find}||'%' or customer_seq LIKE '%'||#{find}||'%') where state=0
+ 	</select>
+ 	<select id="getCustomerList" parameterType="Map" resultType="customer">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from customer_db WHERE  company LIKE '%'||#{find}||'%' or main_name LIKE '%'||#{find}||'%' or customer_seq LIKE '%'||#{find}||'%'  ORDER BY customer_seq DESC)where state=0) a)	WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getCustomer" parameterType="int" resultType="customer">
+		select * from customer_db where customer_seq = #{customer_seq}
+	</select>
+	<insert id="insertComment" parameterType="customer">
+		insert into customer_comment values(c_comment_seq.nextval, #{customer_seq}, #{member_name}, #{add_date}, #{c_comment}, #{color, jdbcType=VARCHAR})
+	</insert>
+	<select id="getCommentQty" resultType="int" parameterType="int">
+ 		select count(*) from customer_comment where customer_seq=#{customer_seq}
+ 	</select>
+ 	<select id="getCommentList" parameterType="Map" resultType="customer">
+ 		SELECT *	FROM (SELECT ROWNUM rn, a.*	FROM (SELECT *	FROM customer_comment where customer_seq=#{customer_seq} ORDER BY c_comment_seq DESC) a	) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<delete id="delCustomer" parameterType="int">
+		delete customer_db where customer_seq=#{customer_seq}
+	</delete>
+	<update id="modifyCustomer" parameterType="customer">
+		update customer_db set client_num=#{client_num}, company_num=#{company_num}, ceo=#{ceo}, address=#{address}, bz_condition=#{bz_condition}, type=#{type}, site=#{site}, main_phone1=#{main_phone1}, main_phone2=#{main_phone2}, main_phone3=#{main_phone3}, sub_phone1=#{sub_phone1}, sub_phone2=#{sub_phone2}, sub_phone3=#{sub_phone3}, main_cell_phone1=#{main_cell_phone1}, main_cell_phone2=#{main_cell_phone2}, main_cell_phone3=#{main_cell_phone3}, sub_cell_phone1=#{sub_cell_phone1}, sub_cell_phone2=#{sub_cell_phone2}, sub_cell_phone3=#{sub_cell_phone3}, main_fax1=#{main_fax1}, main_fax2=#{main_fax2}, main_fax3=#{main_fax3}, sub_fax1=#{sub_fax1}, sub_fax2=#{sub_fax2}, sub_fax3=#{sub_fax3}, main_email1=#{main_email1}, main_email2=#{main_email2}, sub_email1=#{sub_email1}, sub_email2=#{sub_email2}, main_part_name=#{main_part_name}, sub_part_name=#{sub_part_name}, main_name=#{main_name}, sub_name=#{sub_name}, company=#{company}, member_name=#{member_name}, condition=#{condition}, add_date=SYSDATE, address_p=#{address_p}, type_renewal=#{type_renewal}, sort=#{sort} where customer_seq=#{customer_seq}
+	</update>
+	<update id="upState" parameterType="int">
+		update customer_db set state=1 where customer_seq=#{customer_seq}
+	</update>
+	<update id="downState" parameterType="int">
+		update customer_db set state=0 where customer_seq=#{customer_seq}
+	</update>
+	<select id="selectTrashCan" parameterType="Map"  resultType="customer">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from customer_db WHERE  company LIKE '%'||#{find}||'%' or main_name LIKE '%'||#{find}||'%' or customer_seq LIKE '%'||#{find}||'%'  ORDER BY customer_seq DESC) where state=1) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getSearch" parameterType="Map" resultType="customer">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from customer_db WHERE ${search} LIKE '%'||#{find}||'%' ORDER BY customer_seq DESC) where state=0) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getTrashQty" resultType="int"  parameterType="Map">
+		select count(*) from (select * from customer_db where company LIKE '%'||#{find}||'%' or main_name LIKE '%'||#{find}||'%' or customer_seq LIKE '%'||#{find}||'%') where state=1
+	</select>
+	<select id="getSearchQty" resultType="int" parameterType="Map" >
+		select count(*) from (select * from customer_db where ${search} LIKE '%'||#{find}||'%') where state=0
+	</select>
+	<select id="getAllTrashQty" resultType="int">
+		select count(*) from customer_db where  state=1
+	</select>
+	<select id="getMainCustomer" parameterType="Map" resultType="customer">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from customer_db ORDER BY customer_seq DESC)where state=0) a)	WHERE rn BETWEEN 1 AND 5
+	</select>
+	<delete id="delComment" parameterType="int">
+		delete customer_comment where c_comment_seq=#{c_comment_seq}
+	</delete>
+	<update id="modifyComment" parameterType="customer">
+		update customer_comment set member_name=#{member_name}, add_date=#{add_date}, c_comment=#{c_comment}, color=#{color} where c_comment_seq=#{c_comment_seq}
+	</update>
+	<select id="getComment" parameterType="customer" resultType="customer">
+		select * from customer_comment where c_comment_seq=#{c_comment_seq}
+	</select>
+</mapper>

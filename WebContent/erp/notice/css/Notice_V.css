@@ -1,0 +1,5 @@
+@CHARSET "EUC-KR";
+			#titlePlace{position:relative; height:110px;}
+			#pageTitle{position:relative; top: 30px; left:50px; width:500px; border-top:1px solid #C0C0C0; border-bottom:1px solid #C0C0C0; background-color:#EAEAEA; padding:3px;}
+			#bottons{position:relative; left:375px; width:100px;}
+			a{text-decoration:none;}

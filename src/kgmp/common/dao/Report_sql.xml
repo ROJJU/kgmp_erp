@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Report_Mapper">
+	<insert id="insert_d_report" parameterType="report">
+		INSERT INTO D_REPORT VALUES(daily_seq.nextval, #{type}, #{d_file, jdbcType=VARCHAR}, #{title}, #{writer}, SYSDATE, #{insert_year}, #{insert_month}, #{insert_day}, #{send0, jdbcType=VARCHAR}, #{send1, jdbcType=VARCHAR}, #{send2, jdbcType=VARCHAR}, #{send3, jdbcType=VARCHAR}, #{send4, jdbcType=VARCHAR}, #{content}, 0, 0, 0, 0, daily_seq.nextval, #{id})
+	</insert>
+ 	<select id="getDailyQty_g" resultType="int" parameterType="Map" >
+ 		select count(*) from (select * from d_report where title LIKE '%'||#{find}||'%' or writer LIKE '%'||#{find}||'%' ) where (send0=#{writer} or send1=#{writer} or send2=#{writer} or send3=#{writer} or send4=#{writer}) and insert_month=#{month_g, jdbcType=VARCHAR} and insert_day=#{day_g, jdbcType=VARCHAR} and insert_year=#{year_g, jdbcType=VARCHAR}
+ 	</select>
+ 	<select id="getSearchQty_g" resultType="int" parameterType="Map" >
+		select count(*) from (select * from d_report where ${search} LIKE '%'||#{find}||'%') where send0=#{writer} or send1=#{writer} or send2=#{writer} or send3=#{writer} or send4=#{writer}
+	</select>
+	<select id="getDailyQty_s" resultType="int" parameterType="Map" >
+ 		select count(*) from (select * from d_report where title LIKE '%'||#{find}||'%' or writer LIKE '%'||#{find}||'%') where id=#{id} and insert_month=#{month_s, jdbcType=VARCHAR} and insert_day=#{day_s, jdbcType=VARCHAR} and insert_year=#{year_s, jdbcType=VARCHAR}
+ 	</select>
+ 	<select id="getSearchQty_s" resultType="int" parameterType="Map" >
+		select count(*) from (select * from d_report where ${search} LIKE '%'||#{find}||'%') where id=#{id}
+	</select>
+	<select id="getDailyList_g" parameterType="Map" resultType="report">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from d_report WHERE  title LIKE '%'||#{find}||'%' or writer LIKE '%'||#{find}||'%'  ORDER BY ref_seq DESC, step, depth) where insert_month=#{month_g, jdbcType=VARCHAR} and insert_day=#{day_g, jdbcType=VARCHAR} and insert_year=#{year_g, jdbcType=VARCHAR}) a) WHERE rn BETWEEN #{startNum} AND #{endNum} and (send0=#{writer} or send1=#{writer} or send2=#{writer} or send3=#{writer} or send4=#{writer})
+	</select>
+	<select id="getSearch_g" parameterType="Map" resultType="report">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from d_report WHERE ${search} LIKE '%'||#{find}||'%' ORDER BY ref_seq DESC, step, depth) where send0=#{writer} or send1=#{writer} or send2=#{writer} or send3=#{writer} or send4=#{writer}) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getSearch_s" parameterType="Map" resultType="report">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from d_report WHERE ${search} LIKE '%'||#{find}||'%' ORDER BY ref_seq DESC, step, depth) where id=#{id}) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getDailyList_s" parameterType="Map" resultType="report">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from d_report WHERE  title LIKE '%'||#{find}||'%' or writer LIKE '%'||#{find}||'%'  ORDER BY ref_seq DESC, step, depth) where insert_month=#{month_s, jdbcType=VARCHAR} and insert_day=#{day_s, jdbcType=VARCHAR} and insert_year=#{year_s, jdbcType=VARCHAR}) a)	WHERE rn BETWEEN #{startNum} AND #{endNum} and id=#{id}
+	</select>
+	<select  id="getReport_d" parameterType="int" resultType="report">
+		select * from d_report where daily_seq = #{daily_seq}
+	</select>
+	<update id="updateHit">
+		update d_report set hit=hit+1 where daily_seq=#{daily_seq}
+	</update>
+	<insert id="insertComment" parameterType="report">
+		insert into daily_comment values(d_comment_seq.nextval, #{daily_seq}, #{c_writer}, SYSDATE, #{c_content}, d_comment_seq.nextval, 0, 0)
+	</insert>
+	<select id="getCommentQty" resultType="int" parameterType="int">
+ 		select count(*) from daily_comment where daily_seq=#{daily_seq}
+ 	</select>
+ 	<select id="getCommentList" parameterType="Map" resultType="report">
+ 		SELECT *	FROM (SELECT ROWNUM rn, a.*	FROM (SELECT *	FROM daily_comment where daily_seq=#{daily_seq} ORDER BY ref_seq DESC, step, depth) a	) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<!-- 답글 위치 체크 -->
+	<select id="checkPostsStep" parameterType="Map" resultType="string">
+		SELECT MIN(step) FROM d_report WHERE ref_seq=#{ref_seq} AND step<![CDATA[>]]>#{step} AND depth<![CDATA[<=]]>#{depth}
+	</select>
+	<!-- 원문에 대한 답글일 경우 step 계산 -->
+	<select id="getMaxPostsStep" parameterType="Map" resultType="int">
+		SELECT MAX(step) FROM d_report WHERE ref_seq=#{ref_seq}
+	</select>
+	<!-- 답글의 답글일 경우 하위답변 step 계산 -->
+	<update id="setPostsStep" parameterType="Map">
+		UPDATE d_report SET step=step+1 WHERE ref_seq=#{ref_seq} AND step<![CDATA[>=]]>#{result}
+	</update>
+	<!-- 답글 작성 -->
+	<insert id="insertPostsReply" parameterType="report">
+		INSERT INTO D_REPORT VALUES(daily_seq.nextval, #{type}, #{d_file, jdbcType=VARCHAR}, #{title}, #{writer}, SYSDATE, #{insert_year}, #{insert_month}, #{insert_day}, #{send0, jdbcType=VARCHAR}, #{send1, jdbcType=VARCHAR}, #{send2, jdbcType=VARCHAR}, #{send3, jdbcType=VARCHAR}, #{send4, jdbcType=VARCHAR}, #{content}, 0, 0, #{step}, #{depth}, #{ref_seq}, #{id})
+	</insert>
+	
+	<!-- 답글 위치 체크 -->
+	<select id="checkCommentStep" parameterType="Map" resultType="string">
+		SELECT MIN(step) FROM daily_comment WHERE ref_seq=#{ref_seq} AND step<![CDATA[>]]>#{step} AND depth<![CDATA[<=]]>#{depth}
+	</select>
+	<!-- 원문에 대한 답글일 경우 step 계산 -->
+	<select id="getMaxCommentStep" parameterType="Map" resultType="int">
+		SELECT MAX(step) FROM daily_comment WHERE ref_seq=#{ref_seq}
+	</select>
+	<!-- 답글의 답글일 경우 하위답변 step 계산 -->
+	<update id="setCommentStep" parameterType="Map">
+		UPDATE daily_comment SET step=step+1 WHERE ref_seq=#{ref_seq} AND step<![CDATA[>=]]>#{result}
+	</update>
+	<!-- 답글 작성 -->
+	<insert id="insertCommentReply" parameterType="report">
+		insert into daily_comment values(d_comment_seq.nextval, #{daily_seq}, #{c_writer}, SYSDATE, #{c_content}, #{ref_seq}, #{step}, #{depth})
+	</insert>
+	<!-- 메인화면 출력 -->
+	<select id="getMainReport" resultType="report" parameterType="Map">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from d_report WHERE  title LIKE '%'||''||'%' or writer LIKE '%'||''||'%'  ORDER BY daily_seq DESC, step, depth) where send0=#{writer} or send1=#{writer} or send2=#{writer} or send3=#{writer} or send4=#{writer}) a)	WHERE rn BETWEEN 1 AND 5 and insert_month=#{month_g, jdbcType=VARCHAR} and insert_day=#{day_g, jdbcType=VARCHAR} and insert_year=#{year_g, jdbcType=VARCHAR}
+	</select>
+	<update id="upState" parameterType="int">
+		update d_report set state = state+1 where daily_seq=#{daily_seq}
+	</update>
+	<update id="downState" parameterType="int">
+		update d_report set state = state-1 where daily_seq=#{daily_seq}
+	</update>
+	<select id="countGet" parameterType="Map" resultType="int">
+		select count(*) from D_REPORT where insert_year=#{year} and insert_month=#{month} and insert_day=#{day} and (send0=#{writer} or send1=#{writer} or send2=#{writer} or send3=#{writer} or send4=#{writer})
+	</select>
+	<select id="countSend" parameterType="Map" resultType="int">
+		select count(*) from D_REPORT where insert_year=#{year} and insert_month=#{month} and insert_day=#{day} and id=#{writer}
+	</select>
+</mapper>

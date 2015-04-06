@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Telephone_Mapper">
+	<insert id="insertTelephone" parameterType="tel">
+		insert into telephone_m values(telephone_seq.nextval, #{company}, #{phone1}, #{phone2}, #{phone3}, #{to_kgmp}, #{content}, #{writer}, #{add_date}, SYSDATE)
+	</insert>
+	<select id="getTelQty" resultType="int" >
+ 		select count(*) from (select * from telephone_m where company LIKE '%'||#{find}||'%' or add_date LIKE '%'||#{find}||'%' or to_kgmp LIKE '%'||#{find}||'%' or phone3 LIKE '%'||#{find}||'%')
+ 	</select>
+ 	<select id="getSearchQty" resultType="int" parameterType="Map" >
+		select count(*) from (select * from telephone_m where ${search} LIKE '%'||#{find}||'%')
+	</select>
+	<select id="getTelList" parameterType="Map" resultType="tel">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from telephone_m WHERE  company LIKE '%'||#{find}||'%' or add_date LIKE '%'||#{find}||'%' or to_kgmp LIKE '%'||#{find}||'%'  or phone3 LIKE '%'||#{find}||'%'  ORDER BY telephone_seq DESC)) a)	WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getSearch" parameterType="Map" resultType="tel">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from telephone_m WHERE ${search} LIKE '%'||#{find}||'%' ORDER BY telephone_seq DESC)) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<delete id="delTelephone" parameterType="int">
+		delete telephone_m where telephone_seq = #{tel_seq}
+	</delete>
+	<update id="modifyTelephone" parameterType="tel">
+		update telephone_m set company = #{company}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, to_kgmp=#{to_kgmp}, content=#{content}, writer=#{writer}, add_date=#{add_date} where telephone_seq=#{telephone_seq}
+	</update>
+	<select id="getTelephone" parameterType="int" resultType="tel">
+		select * from telephone_m where telephone_seq = #{tel_seq}
+	</select>
+	<select id="getSideTelephone" resultType="tel" parameterType="String">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from telephone_m ORDER BY telephone_seq DESC) where writer=#{member_name}) a) WHERE rn BETWEEN 1 AND 5
+	</select>
+</mapper>

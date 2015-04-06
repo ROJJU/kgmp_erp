@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Dl_Mapper">
+	<insert id="hi_work"  parameterType="dl">
+		insert into dl values(dl_seq.nextval, #{id}, #{insert_year}, #{insert_month}, #{insert_day}, #{hi_work_hour}, #{bye_work_hour}, #{hi_work_min}, #{bye_work_min}, #{hi_work_time}, #{bye_work_time, jdbcType=VARCHAR}, #{work_check}, #{over_work_check}, #{total_work_check}, #{work}, #{late}, #{give_up}, #{dont}, #{vacation}, #{month_vacation}, #{half_vacation}, #{year_vacation}, #{add_date}, #{state, jdbcType=VARCHAR}, #{etc}, #{biz_trip}, #{excuse, jdbcType=VARCHAR}, SYSDATE)
+	</insert>
+	<select id="getState"  parameterType="Map" resultType="dl">
+		select state from dl where id=#{id} and insert_year=#{insert_year} and insert_month=#{insert_month} and insert_day=#{insert_day}
+	</select>
+	<update id="bye_work" parameterType="dl">
+		update dl set bye_work_hour=#{bye_work_hour}, bye_work_min=#{bye_work_min}, bye_work_time =#{bye_work_time}, state=#{state, jdbcType=VARCHAR}, work = #{work}, work_check =#{work_check}, total_work_check=#{total_work_check}, over_work_check=#{over_work_check}, give_up=#{give_up}, etc=#{etc}, biz_trip=#{biz_trip} where id=#{id} and insert_year=#{insert_year} and insert_month=#{insert_month} and insert_day=#{insert_day}
+	</update>
+	<select id="getTotalDlQty" resultType="int" >
+ 		select count(*) from dl join (select kor_name, code_seq, w_level, department, id from member where kor_name LIKE '%'||#{find}||'%' or w_level LIKE '%'||#{find}||'%' or department LIKE '%'||#{find}||'%') using(id)
+ 	</select>
+ 	<select id="getSearchQty" resultType="int" parameterType="Map" >
+		select count(*) from dl join (select kor_name, code_seq, w_level, department, id from member where ${search} LIKE '%'||#{find}||'%') using(id)
+	</select>
+	<select id="getSearch" parameterType="Map" resultType="dl">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (select * from dl join (select kor_name, code_seq, w_level, department, id from member where ${search} LIKE '%'||#{find}||'%') using(id) ORDER BY add_date DESC) a)WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getTotalDlList" parameterType="Map" resultType="dl">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (select * from dl join (select kor_name, code_seq, w_level, department, id from member where kor_name LIKE '%'||#{find}||'%' or w_level LIKE '%'||#{find}||'%' or department LIKE '%'||#{find}||'%') using(id) ORDER BY add_date DESC) a)WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getMembers" resultType="dl" parameterType="Map">
+		select code_seq, kor_name, department, w_level, id from member where kor_name LIKE '%'||#{find, jdbcType=VARCHAR}||'%' or department LIKE '%'||#{find, jdbcType=VARCHAR}||'%' or id LIKE '%'||#{find, jdbcType=VARCHAR}||'%'
+	</select>
+	<select id="getSum" resultType="dl" parameterType="string">
+		select ((sum(bye_work_hour)*60)+sum(bye_work_min))-((sum(hi_work_hour)*60)+sum(hi_work_min)) as bye_work_min, floor((((sum(bye_work_hour)*60)+sum(bye_work_min))-((sum(hi_work_hour)*60)+sum(hi_work_min)))/60) as hi_work_hour, mod((((sum(bye_work_hour)-sum(hi_work_hour))*60)+(ltrim(sum(bye_work_min)-sum(hi_work_min), '-'))), 60) as hi_work_min,  sum(work_check) as work_check, sum(over_work_check) as over_work_check, sum(total_work_check) as total_work_check, sum(work) as work, sum(late) as late, sum(give_up) as give_up, sum(dont) as dont, sum(vacation) as vacation, sum(month_vacation) as month_vacation, sum(half_vacation) as half_vacation, sum(year_vacation) as year_vacation, sum(etc) as etc, sum(biz_trip) as biz_trip from dl where (state=0 or state=1 or state=3 or state=5 or state =7) and id=#{id} and insert_year=${insert_year} and insert_month=${insert_month}  
+	</select>
+	<select id="getOneDl" resultType="dl" parameterType="int">
+		select * from dl where dl_seq=#{dl_seq}
+	</select>
+	<update id="updateState" parameterType="Map">
+		update dl set state=#{state} where dl_seq=#{dl_seq} and id=#{id} and insert_year=${insert_year} and insert_month=${insert_month} and insert_day=${insert_day}
+	</update>
+	<select id="getAdminQty" resultType="int" >
+ 		select count(*) from dl join (select kor_name, code_seq, w_level, department, id from member where kor_name LIKE '%'||#{find}||'%' or w_level LIKE '%'||#{find}||'%' or department LIKE '%'||#{find}||'%') using(id) where state=2 or state=3 or state=4 or state=5 or state=6 or state=7 or state=8 
+ 	</select>
+ 	<select id="getAdminSearchQty" resultType="int" parameterType="Map" >
+		select count(*) from dl join (select kor_name, code_seq, w_level, department, id from member where ${search} LIKE '%'||#{find}||'%') using(id) where state=2 or state=3 or state=4 or state=5 or state=6 or state=7 or state=8
+	</select>
+	<select id="getAdminSearch" parameterType="Map" resultType="dl">
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (select * from dl join (select kor_name, code_seq, w_level, department, id from member where ${search} LIKE '%'||#{find}||'%') using(id) where state=2 or state=3 or state=4 or state=5 or state=6 or state=7 or state=8  ORDER BY add_date DESC) a)WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getAdminList" parameterType="Map" resultType="dl">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (select * from dl join (select kor_name, code_seq, w_level, department, id from member where kor_name LIKE '%'||#{find}||'%' or w_level LIKE '%'||#{find}||'%' or department LIKE '%'||#{find}||'%') using(id) where state=2 or state=3 or state=4 or state=5 or state=6 or state=7 or state=8 ORDER BY add_date DESC) a)WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<update id="adminstate" parameterType="Map">
+		update dl set state=#{state} where dl_seq=#{dl_seq}
+	</update>
+	<insert id="insertVacation" parameterType="Map">
+		insert into dl values(dl_seq.nextval, #{id}, #{insert_year}, #{insert_month}, #{insert_day}, 0, 0, 0, 0, '00:00', '00:00', 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, #{add_date}, 1, 1, 0, #{excuse, jdbcType=VARCHAR}, SYSDATE)
+	</insert>
+</mapper>

@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+#side{position:absolute; top:-2px; left:0px; width:220px; background-image : url(/kgmp/erp/main/images/side_back.png); }
+.side_font{font-size:9px;background-color:#BDBDBD; }
+#side_wrap{margin:0 auto; width:190px;}
+	table.side{
+		  border-collapse:collapse;
+		  border-bottom:1px solid grey;
+		  font-family:"맑은 고딕";
+		  font-size:11px;
+		  color:#333;
+		 }
+		 table.side th{
+		  padding:6px;
+		 }
+		 table.side th{
+		  border-bottom-width:2px;
+		  border-bottom-style:solid;
+		  border-bottom-color:grey;
+		  font-size:1.1em;
+		 }
+		 table.side td{
+		  border-bottom-width:1px;
+		  border-bottom-style:dotted;
+		  border-bottom-color:grey;
+		  padding:6px;
+		 }
+		.sideTel {width: 110px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; cursor:hand; cursor:pointer; }
+		.sideTelNum{width: 35px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; cursor:hand; cursor:pointer;}
+		a.hover:hover{color:blue;}

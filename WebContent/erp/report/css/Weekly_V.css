@@ -1,0 +1,52 @@
+@CHARSET "EUC-KR";
+div.{border:solid 1px red;}
+			#titlePlace{position:relative; height:110px;}
+			#pageTitle{position:relative; top: 50px; left:50px; width:100px;}
+			#bottons{position:relative; left:370px; width:100px;}
+			#pageTitle{position:relative; top: 30px; left:50px; width:500px; border-top:1px solid #C0C0C0; border-bottom:1px solid #C0C0C0; background-color:#EAEAEA; padding:3px;}
+#font{
+  font-family:"Arial Black";
+  font-size:0.75em;
+  fontp-weight :bold;
+ }
+ ul.main_menu{
+  margin:5px 0 0 10px;
+  padding:0;
+ }
+ ul.main_menu li{
+  list-style-type:none;
+  display:block;
+  width:72px;
+  height:22px;
+  text-align:center;
+  margin:0 3px 0 0;
+  padding:3px 0 0 0;
+  float:left;
+  border:1px solid #999;
+  border-bottom:none;
+  /*background-image : url(../bar/notify/img/tab1.gif);*/
+  color : #ffffff;
+  background-color:#D5D5D5;
+ }
+ ul.main_menu li.active{
+  /*  background-image : url(../bar/notify/img/tab2.gif);*/
+  background-color:#F6F6F6;
+  border:1px solid grey;
+  padding-bottom:1px;
+  border-bottom:none;
+  color:#422700;
+ }
+ ul.main_menu li:hover{
+  border-bottom:none;
+  background-color:#F6F6F6;
+  color:black;
+  cursor:pointer;
+  cursor:hand;
+ }
+ .box{
+  position :relative;
+  border-bottom:1px solid #666;
+  height:26px;
+  width : 800px;
+  margin:0 auto;
+ }

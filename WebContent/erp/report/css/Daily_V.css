@@ -1,0 +1,70 @@
+@CHARSET "EUC-KR";
+div.{border:solid 1px red;}
+			#titlePlace{position:relative; height:110px; }
+			#pageTitle{position:relative; top: 30px; left:50px; width:500px; border-top:1px solid #C0C0C0; border-bottom:1px solid #C0C0C0; background-color:#EAEAEA; padding:3px;}
+			#bottons{position:relative; left:370px; width:100px;}
+			#serch{position:relative; left:570px; top:5px; width:300px;}
+			#serch2{position:relative; left:570px; top:5px; width:300px;}
+			#serchPlace{position:relative; height:25px;}
+			#page{position:absolute; width:470px; top:5px; left:70px;}
+			#page2{position:absolute; width:470px; top:5px; left:70px;}
+			#bottonPlace{position:relative; height:40px;}
+			#findEmp{position:absolute; left:630px;}
+			#font{ font-family:"Arial Black"; font-size:0.9em; fontp-weight :bold;}
+			ul.main_menu{margin:5px 0 0 10px; padding:0;}
+			ul.main_menu li{list-style-type:none; display:block; width:130px; height:22px; text-align:center; margin:0 3px 0 0; padding:3px 0 0 0; float:left; border:1px solid grey; padding-bottom:1px; border-bottom:none; /*background-image : url(../bar/notify/img/tab1.gif);*/ color :#422700; background-color:#F6F6F6;}
+			.box{position :relative; border-bottom:1px solid #666; height:26px; width : 800px; margin:0 auto;}
+			.box2{position :relative; border-bottom:1px solid #666; height:160px; width : 800px; margin:0 auto;}
+			#dailyAdd{position:absolute; left:545px; top:35px;}
+			a{text-decoration:none;}
+			#caution{position:relative; left:480px; font-size:10px; color:red; width:350px;}
+			.selectTD:hover{background-color:grey; color:red; font-weight:bold;}
+			
+			 #font1{
+			  font-family:"Arial Black";
+			  font-size:1em;
+			  fontp-weight :bold;
+			 }
+			 ul.main_menu1{
+			  margin:5px 0 0 10px;
+			  padding:0;
+			 }
+			 ul.main_menu1 li{
+			  list-style-type:none;
+			  display:block;
+			  width:72px;
+			  height:22px;
+			  text-align:center;
+			  margin:0 3px 0 0;
+			  padding:3px 0 0 0;
+			  float:left;
+			  border:1px solid #999;
+			  border-bottom:none;
+			  /*background-image : url(../bar/notify/img/tab1.gif);*/
+			  color : #ffffff;
+			  background-color:#D5D5D5;
+			 }
+			 ul.main_menu1 li.active{
+			  /*  background-image : url(../bar/notify/img/tab2.gif);*/
+			  background-color:#ffffff;
+			  border:1px solid grey;
+			  padding-bottom:1px;
+			  border-bottom:none;
+			  color:#422700;
+			 }
+			 ul.main_menu1 li:hover{
+			  border-bottom:none;
+			  background-color:#ffffff;
+			  color:black;
+			  cursor:pointer;
+			  cursor:hand;
+			  border-bottom:none;
+			  padding-bottom:1px;
+			 }
+			 .box1{
+			  position :relative;
+			  border-bottom:1px solid #666;
+			  height:26px;
+			  width : 800px;
+			  margin:0 auto;
+			 }

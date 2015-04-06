@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kgmp.common.mapper.Spend_Mapper">
+	<insert id="insertSpend" parameterType="spend">
+		insert into spend values(spend_seq.nextval, #{writer}, #{spend_date}, #{title}, #{money}, #{money_kor}, #{how}, #{etc}, #{spend_img, jdbcType=VARCHAR}, '0', #{summary}, sysdate, #{year}, #{month}, 0)
+	</insert>
+	<select id="getSpendQty" resultType="int" >
+ 		select count(*) from (select * from spend where year=#{year} and month=#{month})
+ 	</select>
+ 	<select id="getSpendList" parameterType="Map" resultType="spend">
+ 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from spend  where year=#{year} and month=#{month} ORDER BY spend_seq DESC)) a) WHERE rn BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="selectSpend" resultType="spend" parameterType="int">
+		select * from spend where spend_seq=#{spend_seq}
+	</select>
+	<delete id="delSpend" parameterType="int">
+		delete spend where spend_seq=#{spend_seq}
+	</delete>
+	<update id="modifySpend" parameterType="spend">
+		update spend set writer=#{writer}, spend_date=#{spend_date}, title=#{title}, money=#{money}, money_kor=#{money_kor}, how=#{how}, etc=#{etc}, spend_img=#{spend_img, jdbcType=VARCHAR}, summary=#{summary}, add_date=sysdate where spend_seq=#{spend_seq}
+	</update>
+	<update id="updateState" parameterType="Map">
+		update spend set state=#{state} where spend_seq=#{spend_seq}
+	</update>
+</mapper>

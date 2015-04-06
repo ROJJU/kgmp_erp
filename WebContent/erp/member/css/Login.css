@@ -1,0 +1,7 @@
+@CHARSET "EUC-KR";
+body{position:relative;height:100%;background:#f5f6f7; margin:0 auto;}
+#header{position:realtive;width: 100%;height: 200px;}
+#logo{position:relatibve; margin:0 auto;width:750px;height:100%;}
+.font{color:grey;font-family:µ¸¿ò;font-size:11px;}
+#container{position:relative;width: 100%;height:300px;}
+#content{position:rerative;top:500px;margin:0 auto;width:750px;height:100%;}

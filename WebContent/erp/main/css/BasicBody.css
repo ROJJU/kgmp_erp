@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+	body{margin:0; background:#f5f6f7; height:100%;}
+	html{height:100%;}
+	#container{position:relative; width:1280px; font-size:12px; font-family:Arial, Helvetica, sans-serif; margin:0 auto; min-height:86%;}
+	#content{position:relative; width:940px; left:238px; padding-bottom: 50px; min-height:630px;} 
+	#flap{position:relative; width:1240px; margin:0 auto;}
+	.text{position:relative; font-family:맑은 고딕; font-size:11px; color:grey;}
+	#longLogo{position: absolute; left:1070px; top:1px;}
+	#con{position:relative; left:30px;}
+	#wrap {position:relative;  margin:0 auto;}
+ 	#footer {position:relative; bottom:0px; width:100%;  background:#EAEAEA;}
+ 	elect, input, img, input.type-image{/* border: 0 none; */ vertical-align:middle;}
+ 	#serch{position:relative; left:0px; top:100xp; width:450px;}
+ 	#tablePlace{margin:0 auto; width:800px; left:-4px;}
+ 	div.{border:1px red solid;}

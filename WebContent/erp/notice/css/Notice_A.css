@@ -1,0 +1,41 @@
+@CHARSET "EUC-KR";
+div#content{border:solid 1px #f5f6f7;}
+			#titlePlace{position:relative; height:80px;}
+			#noticeTitle{position:relative; top: 10px; left:100px; width:100px;}
+			#bottonPlace{position:relative; height:60px;}
+			#bottons{position:relative; left:285px; top:20px; width:200px;}
+			table{
+			  border-collapse:collapse;
+			  border-bottom:1px solid grey;
+			  font-family:"¸¼Àº °íµñ";
+			  font-size:11px;
+			  color:#333;
+			 }
+			 table th,td{
+			  padding:6px;
+			 }
+			 table th{
+			  border-bottom-width:2px;
+			  border-bottom-style:solid;
+			  border-bottom-color:grey;
+			  font-size:1.1em;
+			 }
+			 table td{
+			  border-bottom-width:1px;
+			  border-bottom-style:dotted;
+			  border-bottom-color:grey;
+			 }
+		 .box {
+				display:block;
+				padding:3px;
+				width:98%;
+				margin:0 auto;
+				background:#FFF;
+				border:#AAA 1px solid;
+				font-size:13px;
+				border:#000 1px solid;
+	border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;
+	box-shadow:0 0 3px #999; -webkit-box-shadow:0 0 3px #999; -moz-box-shadow:0 0 3px #999;
+	overflow:hidden;
+	transition:box-shadow 0.4s, border 0.4s; -webkit-transition:-webkit-box-shadow 0.4s, border 0.4s; -moz-transition:-moz-box-shadow 0.4s, border 0.4s; -o-transition:-o-box-shadow 0.4s, border 0.4s;
+			}

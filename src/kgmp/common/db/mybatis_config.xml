@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="kgmp.common.beans.Member" alias="member"/>
+		<typeAlias type="kgmp.common.beans.Customer" alias="customer"/>
+		<typeAlias type="kgmp.common.beans.DL" alias="dl"/>
+		<typeAlias type="kgmp.common.beans.Report" alias="report"/>
+		<typeAlias type="kgmp.common.beans.Telephone" alias="tel"/>
+		<typeAlias type="kgmp.common.beans.Notice" alias="notice"/>
+		<typeAlias type="kgmp.common.beans.Schedule" alias="schedule"/>
+		<typeAlias type="kgmp.common.beans.Message" alias="msg"/>
+		<typeAlias type="kgmp.common.beans.Spend" alias="spend"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<property name="username" value="kgmp"/>
+				<property name="password" value="kgmp0315480055"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="kgmp/common/dao/Member_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Customer_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Dl_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Report_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Telephone_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Notice_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Schedule_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Message_sql.xml"/>
+		<mapper resource="kgmp/common/dao/Spend_sql.xml"/>
+	</mappers>
+</configuration>

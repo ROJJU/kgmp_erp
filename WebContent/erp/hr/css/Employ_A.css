@@ -1,0 +1,11 @@
+@CHARSET "EUC-KR";
+div.{border:solid 1px red;}
+			#titlePlace{position:relative; height:75px;}
+			#pageTitle{position:relative; top: 30px; left:50px; width:500px; border-top:1px solid #C0C0C0; border-bottom:1px solid #C0C0C0; background-color:#EAEAEA; padding:3px;}
+			#ViewList{position:relative;width:300px;}
+			#buttonPlace{position:relative; height:90px;}
+			#buttons{position:relative; left:750px; top:30px; width:120px;}
+			table.employment{width:800px; border-collapse:collapse;}
+			table.employment th{background-color:#D5D5D5; border:1px solid black;}
+			table.employment td{height:30px; border:1px solid black;}
+			#box{position:relative; height:40px;}
