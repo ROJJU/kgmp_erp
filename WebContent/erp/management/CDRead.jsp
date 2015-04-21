@@ -132,37 +132,39 @@ Customer customer = CustomerDAO.getCustomer(customer_seq);
 							<tr align="left">
 								<th>&nbsp;주담당자전화번호</th>
 								<td>
-									<c:if test="${c.main_phone3==0||c.main_phone2==0}">-</c:if>
-									<c:if test="${c.main_phone3!=0}">${c.main_phone1}-${c.main_phone2}-${c.main_phone3}</c:if>
+									<c:if test="${c.main_phone3=='0'||c.main_phone2=='0'}">-</c:if>
+									<c:if test="${c.main_phone3!='0'}">${c.main_phone1}-${c.main_phone2}-${c.main_phone3}</c:if>
 								</td>
 								<th>&nbsp;부담당자전화번호</th>
 								<td>
-									<c:if test="${c.sub_phone3==0||c.sub_phone2==0}">-</c:if>
-									<c:if test="${c.sub_phone3!=0}">${c.sub_phone1}-${c.sub_phone2}-${c.sub_phone3}</c:if>
+									<c:if test="${c.sub_phone3=='0'||c.sub_phone2=='0'}">-</c:if>
+									<c:if test="${c.sub_phone3!='0'}">${c.sub_phone1}-${c.sub_phone2}-${c.sub_phone3}</c:if>
 								</td>
 							</tr>
 							<tr align="left">
 								<th>&nbsp;주담당자휴대전화번호</th>
 								<td>
-									<c:if test="${c.main_cell_phone3==0||c.main_cell_phone2==0}">-</c:if>
-									<c:if test="${c.main_cell_phone3!=0}">${c.main_cell_phone1}-${c.main_cell_phone2}-${c.main_cell_phone3}</c:if>
+									<c:if test="${c.main_cell_phone3=='0'||c.main_cell_phone2=='0'}">-</c:if>
+									<c:if test="${c.main_cell_phone3!='0'}">${c.main_cell_phone1}-${c.main_cell_phone2}-${c.main_cell_phone3}</c:if>
 								</td>
 								<th>&nbsp;부담당자휴대전화번호</th>
 								<td>
-									<c:if test="${c.sub_cell_phone3==0||c.sub_cell_phone2==0}">-</c:if>
-									<c:if test="${c.sub_cell_phone3!=0}">${c.sub_cell_phone1}-${c.sub_cell_phone2}-${c.sub_cell_phone3}</c:if>
+									<c:if test="${c.sub_cell_phone3=='0'||c.sub_cell_phone2=='0'}">-</c:if>
+									<c:if test="${c.sub_cell_phone3!='0'}">${c.sub_cell_phone1}-${c.sub_cell_phone2}-${c.sub_cell_phone3}</c:if>
 								</td>
 							</tr>
 							<tr align="left">
 								<th>&nbsp;주담당자팩스번호</th>
 								<td>
-									<c:if test="${c.main_fax3==0||c.main_fax2==0}">-</c:if>
-									<c:if test="${c.main_fax3!=0}">${c.main_fax1}-${c.main_fax2}-${c.main_fax3}</c:if>
+									<c:choose>
+										<c:when test="${c.main_fax2=='0'||c.main_fax3=='0'}">-</c:when>
+										<c:otherwise>${c.main_fax1}-${c.main_fax2}-${c.main_fax3}</c:otherwise>
+									</c:choose>
 								</td>
 								<th>&nbsp;부담당자팩스번호</th>
 								<td>
-									<c:if test="${c.sub_fax3==0||c.sub_fax2==0}">-</c:if>
-									<c:if test="${c.sub_fax3!=0}">${c.sub_fax1}-${c.sub_fax2}-${c.sub_fax3}</c:if>
+									<c:if test="${c.sub_fax3=='0'||c.sub_fax2=='0'}">-</c:if>
+									<c:if test="${c.sub_fax3!='0'}">${c.sub_fax1}-${c.sub_fax2}-${c.sub_fax3}</c:if>
 								</td>
 							</tr>
 							<tr align="left">

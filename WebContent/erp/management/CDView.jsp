@@ -136,12 +136,12 @@ int trash = CustomerDAO.getTrashQty();
 								<td><div class="company" title="${a.company}">${a.company}</div></td>
 								<td><div class="ellipsis" title="${a.address}">${a.address}</div></td>
 								<td>
-									<c:if test="${a.main_phone3==0||a.main_phone2==0}">-</c:if>
-									<c:if test="${a.main_phone3!=0}">${a.main_phone1}-${a.main_phone2}-${a.main_phone3}</c:if>
+									<c:if test="${a.main_phone3=='0'||a.main_phone2=='0'}">-</c:if>
+									<c:if test="${a.main_phone3!='0'}">${a.main_phone1}-${a.main_phone2}-${a.main_phone3}</c:if>
 								</td>
 								<td>
-									<c:if test="${a.main_fax3==0||a.main_fax2==0}">-</c:if>
-									<c:if test="${a.main_fax3!=0}">${a.main_fax1}-${a.main_fax2}-${a.main_fax3}</c:if>
+									<c:if test="${a.main_fax3=='0'||a.main_fax2=='0'}">-</c:if>
+									<c:if test="${a.main_fax3!='0'}">${a.main_fax1}-${a.main_fax2}-${a.main_fax3}</c:if>
 								</td>
 								<td>
 									<c:if test="${a.main_email2=='-'||a.main_email1=='-'}">-</c:if>
