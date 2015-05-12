@@ -15,7 +15,7 @@ pageContext.setAttribute("m", msg_dao.newMsg(writer));
 function popupMsgAdd(msg_seq, writer_id){
 	window.open("/kgmp/erp/main/MessageAdd.jsp?id="+writer_id,"MsgAdd","width=450px, height=470px, left=400px, top=100px, location=no, toolbar=no, realzable=no scrollbars = yes");
 	location.href="/kgmp/erp/main/Message_off_proc.jsp?msg_seq="+msg_seq;
-	window.close();
+	
 }
 function popupMenu(msg_seq){
 	window.open("/kgmp/erp/main/MessageView.jsp","msg","width=650px, height=650px, left=0px, top=0px, location=no, toolbar=no, realzable=no scrollbars = yes");

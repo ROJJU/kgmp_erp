@@ -181,7 +181,7 @@ if(nowD==1){
 			  		<c:forEach var="c" items="${list_sche}">
 			            <li>
 			            	<div>
-			                	<img src="/save/${c.emp_pic}" />
+			                	<img src="/save/${c.emp_pic}"/>
 			                	<h3>[${c.writer}]</h3>
 			                	<h3> 일정명 : ${c.title} </h3>
 			                  	<span>${c.year}.${c.month}.${c.day}</span> - ${c.content}
