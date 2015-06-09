@@ -13,11 +13,13 @@ if(check.equals("true")){
 		%>
 		alert('출근 등록 완료 되었습니다. 오늘도 수고 해주세요');
 		window.close();
+		window.opener.location.reload();
 		<%
 	}if(dl.getState().equals("1")){
 		%>
 		alert('퇴근 등록 완료 되었습니다. 오늘도 수고 하셨습니다.');
 		window.close();
+		window.opener.location.reload();
 		<%
 	}if(dl.getState().equals("2")){
 		%>
