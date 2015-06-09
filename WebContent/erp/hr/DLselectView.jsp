@@ -61,7 +61,7 @@ request.setCharacterEncoding("utf-8");
 				<div id = "tablePlace">
 					  <div id="bottonPlace">
 							<div id ="search">
-								<form action="DLselectView.jsp" method="post" name="dl">
+								<form action="DLselectView.jsp" method="POST" name="dl">
 									<select>
 										<option value="all">ALL</option>
 										<option value="w_level">직책</option>
