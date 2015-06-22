@@ -32,7 +32,7 @@ function popupAdd(writer_id){
 		<tr height="30px;">
 			<td align="right">
 				<%if(state==0){%><input type="button" value="확인처리" onclick="javaScript:location.href='Message_readCheck_proc.jsp?msg_seq=${m.msg_seq}'"><%}%>
-				<input type="image" src="images/save.png" width="40px"/>
+				<%if(state==0){%><input type="image" src="images/save.png" width="40px" onclick="javaScript:location.href='Message_save_proc.jsp?msg_seq=${m.msg_seq}'"/><%}%>
 				<%if(state==0){%><input type="image" src="images/send.png" width="40px" onclick="popupAdd('${m.writer_id}')"/><%}%>
 				<%if(state==0){%><input type="image" src="images/exit.png" width="40px" onclick="javaScript:window.close();"/><%}%>
 				<%if(state==1){%><input type="image" src="images/del.png" width="40px" onclick="javaScript:location.href='Message_del_proc.jsp?msg_seq=${m.msg_seq}'"/><%}%>

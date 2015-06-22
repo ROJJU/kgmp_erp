@@ -79,7 +79,7 @@
 								<c:if test="${a.msg_state==0}"><b style="color:red;">미확인</b></c:if>
 								<c:if test="${a.msg_state==1}">${a.chk_date}(${a.chk_time})</c:if>
 							</td>
-							<td align="center"><a href="#" style="color:red;">영구삭제</a></td>
+							<td align="center"><a onclick="javaScript:location.href='Message_del2_proc.jsp?msg_seq=${a.msg_seq}'" style="color:red;">영구삭제</a></td>
 						</tr>
 					</c:forEach>
 					</table><br/>
