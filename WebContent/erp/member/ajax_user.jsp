@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=euc-kr" %>
 <%@ page import="java.util.*" %>
 <jsp:useBean id="example_access_user" class="java.util.ArrayList" scope="application" />
+<script type="text/javascript" src="../report/js/jquery-1.9.1.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String user_ip = request.getRemoteAddr();
@@ -33,10 +34,11 @@ if(update_no>-1) {
 }
 
 //30초 동안 접속이 없는자 제거
+/*
 for(int i=0;i<remove_list.size();i++){
 	int remove_no = Integer.parseInt(remove_list.get(i)+"");
 	example_access_user.remove(remove_no);
-}
+}*/
 %>
 <!-- 현재접속자 start-->
 <table width="100%">

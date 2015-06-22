@@ -115,8 +115,8 @@ function getData(){
 	data.send(null);		
 }
 //db 변경
-setInterval(" requestHello()", 10000);
-setInterval("getData()", 10000);
+setInterval(" requestHello()", 4000);
+setInterval("getData()", 4000);
 	</script>
 	</head>
 <body>
