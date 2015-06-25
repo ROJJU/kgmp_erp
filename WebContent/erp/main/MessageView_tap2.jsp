@@ -42,6 +42,11 @@
 		function popupRead(msg_seq, state){
 			window.open("/kgmp/erp/main/MessageRead.jsp?msg_seq="+msg_seq+"&state="+state,"Read","width=450px, height=450px, left=400px, top=100px, location=no, toolbar=no, realzable=no scrollbars = yes");
 		}
+		
+		function goTrash(msg_seq){
+			if(confirm('삭제된 메시지는 복구할수 없으며, 상대방 보관함에서도 지워집니다. 계속 진행하시겠습니까?'))
+			location.href='Message_del2_proc.jsp?msg_seq='+msg_seq;
+		}
 	</script>
 	</head>
 	<body>
@@ -79,7 +84,7 @@
 								<c:if test="${b.msg_state==0}"><b style="color:red;">미확인</b></c:if>
 								<c:if test="${b.msg_state==1}">${b.chk_date}(${b.chk_time})</c:if>
 							</td>
-							<td align="center"><a href="Message_del2_proc.jsp?msg_seq=${b.msg_seq}" style="color:#F15F5F;" >삭제</a></td>
+							<td align="center"><a href="#" onclick="goTrash(${b.msg_seq})" style="color:#F15F5F;" >영구삭제</a></td>
 						</tr>
 					</c:forEach>
 					</table><br/>

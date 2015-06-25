@@ -45,7 +45,7 @@
 		}
 		
 		function goTrash(msg_seq){
-			alert('영구삭제 됩니다.');
+			if(confirm('삭제된 메시지는 복구할수 없으며, 상대방 보관함에서도 지워집니다. 계속 진행하시겠습니까?'))
 			location.href='Message_del2_proc.jsp?msg_seq='+msg_seq;
 		}
 	</script>
