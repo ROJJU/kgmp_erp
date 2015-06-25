@@ -22,7 +22,7 @@ for(int i=0;i<example_access_user.size();i++){
 	String session_id = map.get("session_id")+"";
 	if(session_id.equals(session.getId())) update_no = i;
 	long access_time = Long.parseLong(map.get("access_time")+"");
-	if((System.currentTimeMillis()-access_time) > 600000) remove_list.add(i+"");
+	if((System.currentTimeMillis()-access_time) > 300000) remove_list.add(i+"");
 }
 
 if(update_no>-1) {
@@ -32,7 +32,7 @@ if(update_no>-1) {
 	*유저를 입력하고 추가하는 과정에 오류가 생김
 	*이유는 알수없으나 널포인트 오류가나는 걸로 보아선, 반복적으로 연동되는 과정에서 시퀀스값이 안들어가는 듯
 	*제거/추가 기능을 빼고 update_no가 1 이상일 경우 리스트를 추가함
-	*바로바로 나가는 인원을 확인하기위해 acces_time을 비교하여 10초 내외로 하였으나 변동이 심해 10분으로 변경
+	*바로바로 나가는 인원을 확인하기위해 acces_time을 비교하여 10초 내외로 하였으나 변동이 심해 5분으로 변경
 	*/
 }else{
 	example_access_user.add(user_info);
