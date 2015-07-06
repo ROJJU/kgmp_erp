@@ -103,7 +103,7 @@ function getData(){
 	            var str = data.responseText;//서버에서 보낸 내용 받기
 	           if(str==1){
 	        	   document.getElementById("myDiv").innerHTML = "New !";//보여주기 
-	        	   window.open("/kgmp/erp/main/MessageCheck.jsp","mRead","width=450px, height=277px, left=400px, top=100px, location=no, toolbar=no, realzable=no scrollbars = yes");
+	        	   window.open("/kgmp/erp/main/MessageCheck.jsp","mRead","width=450px, height=550px, left=400px, top=100px, location=no, toolbar=no, realzable=no scrollbars = yes");
 	        	   }else{
         		   document.getElementById("myDiv").innerHTML =" ";
 	        	   }

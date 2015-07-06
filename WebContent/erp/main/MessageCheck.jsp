@@ -36,7 +36,7 @@ function popupClose(msg_seq){
 	table{border-collapse:collapse;}
 	#header{position: relative; background-color:grey; width:100%; height:20px;}
 	#container{position: relative;}
-	#contents{border:1px solid grey; margin:0 auto; width:280px; padding:10px;}
+	#contents{border:1px solid grey; margin:0 auto; width:95%; padding:10px;}
 	#footer{position: relative; background-color:grey; width:100%; height:20px;}
 	.font{font-family:맑은 고딕; font-size:11px;padding:5px;}
 	.font2{font-family:맑은 고딕; font-size:12px; color:#ffffff;}
@@ -46,20 +46,21 @@ function popupClose(msg_seq){
 	<div id="header" class="font2">&nbsp;도착한 메세지가 있습니다_${m.add_date}_${m.add_time}&nbsp;<img src="/kgmp/erp/main/images/icon_new.gif"></div><br>
 	<div id="container">
 		<div id="contents">
-			<table>
-				<tr style="border-bottom:#EAEAEA 3px solid;" align="center">
-					<td class="font" style="background-color:#ffffff; border-right:1px grey solid;">작성자</td>
-					<td style="background-color:#ffffff;" width="175px"><input type="text" style="border:none; font-family:맑은 고딕; font-size:11px; width:160px" value="${m.writer}" readonly></td>
-					<td rowspan="3" style="background-color:#5D5D5D; border-left:4px solid #EAEAEA; cursor:pointer; cursor:hand;" class="font2" width="50px" align="center" onclick="popupMsgAdd(${m.msg_seq},'${m.writer_id}')">답장</td>
-				</tr>
-				<tr>
-					<td class="font" style="background-color:#ffffff; border-right:1px grey solid;">내용</td>
-					<td style="background-color:#ffffff;">&nbsp;<textarea style="border:none; font-family:맑은 고딕; font-size:11px; width:160px; height:100px;" readonly>${m.content}</textarea></td>
-				</tr>
-			</table><br>
+			작성자 : ${m.writer}<br><hr><br>
+			내  용 :<br>
+			 <textarea style="border:none; font-family:맑은 고딕; font-size:11px; width:100%; height:300px;" readonly>${m.content}</textarea>
+			<br><br>
 			<table align="center">
 				<tr>
-					<td><input type="button" value="메세지함 확인" onclick="popupMenu(${m.msg_seq});">&nbsp;&nbsp;&nbsp;<input type="button" value="알림 끄기" onclick="popupOff(${m.msg_seq});">&nbsp;&nbsp;&nbsp;<input type="button" value="닫기" onclick="popupClose(${m.msg_seq});"></td>
+					<td>
+						<input type="button" value="메세지함 확인" onclick="popupMenu(${m.msg_seq});">
+						&nbsp;&nbsp;&nbsp;
+						<input type="button" value="알림 끄기" onclick="popupOff(${m.msg_seq});">
+						&nbsp;&nbsp;&nbsp;
+						<input type="button" value="답장" onclick="popupMsgAdd(${m.msg_seq},'${m.writer_id}')">
+						&nbsp;&nbsp;&nbsp;
+						<input type="button" value="닫기" onclick="popupClose(${m.msg_seq});">
+					</td>
 				</tr>
 			</table>
 		</div>
