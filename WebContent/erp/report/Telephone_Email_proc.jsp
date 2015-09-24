@@ -45,9 +45,8 @@
  		trans.sendMessage(msg, msg.getAllRecipients());//메일을 수진자에게 전송
  		trans.close();
 %>
-<<script type="text/javascript">
+<script type="text/javascript">
 	alert("메세지전송에 성공하였습니다.");
-	history.go(-1);
 </script> 		
 <%
  	}catch(Exception e){
@@ -56,3 +55,26 @@
  		return;
  	}
  %>
+<jsp:useBean id="telDAO" class="kgmp.common.dao.Telephone_dao"  scope="session"></jsp:useBean>
+<jsp:useBean id="tel" class="kgmp.common.beans.Telephone"></jsp:useBean>
+<jsp:setProperty property="*" name="tel"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script>
+<%
+String check = telDAO.insertTelephone(tel);
+
+if(check.equals("true")){
+	%>
+			alert('저장 성공 하였습니다.');
+				opener.location.href="Telephone_view.jsp";
+				window.close();
+	<%
+}else{
+	%>
+			alert('저장 실패 하였습니다.');
+			window.close();
+	<%
+}
+%>
+</script>
+ 
