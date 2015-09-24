@@ -44,14 +44,6 @@ String nowDay = year.format(cal.getTime());
 				<option value="it@k-gmp.com">박진주</option>
 				
 			</select>
-			<select id ="MailReceiver" name="MailReceiver">
-				<option value="it@k-gmp.com">--받는사람--</option>
-				<option value="christine.kim@k-gmp.com">김효진</option>
-				<option value="it@k-gmp.com">최현익</option>
-				<option value="biz@k-gmp.com">이효은</option>
-				<option value="biz@k-gmp.com">박진주</option>
-				
-			</select>
 		</div>
 	</form>
 	<input type="button" id="sendEm" name="sendEm" value="SEND" onclick="sendEmail()"/>	

@@ -14,7 +14,7 @@
  request.setCharacterEncoding("euc-kr");
 //Telephone_add.jsp 폼 테이블 내용 request 
  String sender = request.getParameter("MailSender");
- String receiver = request.getParameter("MailReceiver");
+ String receiver = "it@k-gmp.com";
  String company = request.getParameter("company");
  String subject = "System Mail";
  String phone1 = request.getParameter("phone1");
