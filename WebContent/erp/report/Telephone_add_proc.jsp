@@ -11,7 +11,7 @@ String check = telDAO.insertTelephone(tel);
 if(check.equals("true")){
 	%>
 			alert('저장 성공 하였습니다.');
-				opener.location.href="Telephone_view.jsp";
+				history.go(-1);
 				window.close();
 	<%
 }else{
