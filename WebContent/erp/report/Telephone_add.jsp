@@ -12,7 +12,7 @@ String nowDay = year.format(cal.getTime());
 </head>
 <script type="text/javascript">
 	function sendEmail() {
-		document.tel.action="Telephone_Email.jsp";
+		document.tel.action="Telephone_Email_proc.jsp";
 		document.tel.submit();
 	}
 </script>
