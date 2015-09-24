@@ -10,6 +10,12 @@ String nowDay = year.format(cal.getTime());
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
+<script type="text/javascript">
+function sendEmail() {
+	document.tel.action="Telephone_Email_proc.jsp";
+	document.tel.submit();
+} 
+</script>
 <body>
 <b>Telephone_Message</b>_<a style="font-size:11px; color:red; text-decoration:none;" href="javaScript:document.tel.submit()" title="추가">Add</a>
 <hr>
@@ -28,7 +34,18 @@ String nowDay = year.format(cal.getTime());
 				</tr>
 			</table>
 		</div>
+		<div id="send" style="text-align:center;margin-top:5px;margin-left:50px; ">
+			<select id="MailSender" name="MailSender">
+				<option value="it@k-gmp.com">--From--</option>
+				<option value="christine.kim@k-gmp.com">김효진</option>
+				<option value="biz@k-gmp.com">이효은</option>
+				<option value="it@k-gmp.com">최현익</option>
+				<option value="it@k-gmp.com">박진주</option>
+			</select>
+		</div>
 	</form>
-<hr>
+	<div id="btn_send" style="text-align:center;margin-left:190px; margin-top:-20px;">
+		<input type="button" id="sendEm" name="sendEm" value="Send" onclick="sendEmail()"/>
+	</div>
 </body>
 </html>
