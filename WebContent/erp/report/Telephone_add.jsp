@@ -19,7 +19,7 @@ String nowDay = year.format(cal.getTime());
 <body>
 <b>Telephone_Message</b>_<a style="font-size:11px; color:red; text-decoration:none;" href="javaScript:document.tel.submit()" title="추가">Add</a>
 <hr>
-	<form action="sendmmail.jsp" name="tel" method="post">
+	<form action="Telephone_add_proc.jsp" name="tel" method="post">
 		<div id="wrap" style="margin:0 auto; width:250px;">
 			<table style="border:1px solid black; font-size:11px;">
 				<tr><td><font color="red">*</font> 상호/성명</td><td><input type="text" name="company"></td></tr>
