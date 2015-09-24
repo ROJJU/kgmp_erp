@@ -1,14 +1,14 @@
 package kgmp.common.beans;
 
 public class Telephone{
-	private int telephone_seq;
-	private String company;
-	private String phone1;
-	private String phone2;
-	private String phone3;
-	private String to_kgmp;
-	private String content;
-	private String writer;
+	private int telephone_seq; //통화목록 번호
+	private String company; //상호/이름
+	private String phone1;  //폰번호1
+	private String phone2;	//폰번호2
+	private String phone3;	//폰번호3
+	private String to_kgmp; //찾는사람
+	private String content; //내용
+	private String writer;  //글쓴사람
 	private String add_date;
 	private String check_date;
 	
