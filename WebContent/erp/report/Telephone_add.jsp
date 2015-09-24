@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr" pageEncoding="euc-kr"%>
 <%@ page import="java.util.*, java.text.*" %>
 <%
 Calendar cal=Calendar.getInstance();
@@ -17,17 +17,17 @@ String nowDay = year.format(cal.getTime());
 	}
 </script>
 <body>
-<b>Telephone_Message</b>_<a style="font-size:11px; color:red; text-decoration:none;" href="javaScript:document.tel.submit()" title="ì¶”ê°€">Add</a>
+<b>Telephone_Message</b>_<a style="font-size:11px; color:red; text-decoration:none;" href="javaScript:document.tel.submit()" title="Ãß°¡">Add</a>
 <hr>
-	<form action="Telephone_add_proc.jsp" name="tel" method="post">
+	<form action="sendmmail.jsp" name="tel" method="post">
 		<div id="wrap" style="margin:0 auto; width:250px;">
 			<table style="border:1px solid black; font-size:11px;">
-				<tr><td><font color="red">*</font> ìƒí˜¸/ì„±ëª…</td><td><input type="text" name="company"></td></tr>
-				<tr><td><font color="red">*</font> ì „í™”ë²ˆí˜¸</td><td><input type="text" style="width:47px;" name="phone1"> - <input type="text" style="width:47px;" name="phone2"> - <input type="text" style="width:47px;" name="phone3"></td></tr>
-				<tr><td><font color="red">*</font> ì°¾ëŠ”ì‚¬ëžŒ</td><td><input type="text" name="to_kgmp"></td></tr>
+				<tr><td><font color="red">*</font> »óÈ£/¼º¸í</td><td><input type="text" name="company"></td></tr>
+				<tr><td><font color="red">*</font> ÀüÈ­¹øÈ£</td><td><input type="text" style="width:47px;" name="phone1"> - <input type="text" style="width:47px;" name="phone2"> - <input type="text" style="width:47px;" name="phone3"></td></tr>
+				<tr><td><font color="red">*</font> Ã£´Â»ç¶÷</td><td><input type="text" name="to_kgmp"></td></tr>
 				<tr>
 					<td>
-						<font color="red">*</font> ë‚´ìš©</td><td><textarea style="width:167px;" name="content"></textarea>
+						<font color="red">*</font> ³»¿ë</td><td><textarea style="width:167px;" name="content"></textarea>
 						<input type="hidden" name="writer" value="${member_name}">
 						<input type="hidden" name="add_date" value="<%=nowDay%>">
 					</td>
@@ -37,19 +37,19 @@ String nowDay = year.format(cal.getTime());
 		<div id="send">
 		
 			<select id ="MailSender" name="MailSender">
-				<option value="it@k-gmp.com">--ë³´ë‚´ëŠ”ì‚¬ëžŒ--</option>
-				<option value="christine.kim@k-gmp.com">ê¹€íš¨ì§„</option>
-				<option value="biz@k-gmp.com">ì´íš¨ì€</option>
-				<option value="it@k-gmp.com">ìµœí˜„ìµ</option>
-				<option value="it@k-gmp.com">ë°•ì§„ì£¼</option>
+				<option value="it@k-gmp.com">--º¸³»´Â»ç¶÷--</option>
+				<option value="christine.kim@k-gmp.com">±èÈ¿Áø</option>
+				<option value="biz@k-gmp.com">ÀÌÈ¿Àº</option>
+				<option value="it@k-gmp.com">ÃÖÇöÀÍ</option>
+				<option value="it@k-gmp.com">¹ÚÁøÁÖ</option>
 				
 			</select>
 			<select id ="MailReceiver" name="MailReceiver">
-				<option value="it@k-gmp.com">--ë°›ëŠ”ì‚¬ëžŒ--</option>
-				<option value="christine.kim@k-gmp.com">ê¹€íš¨ì§„</option>
-				<option value="it@k-gmp.com">ìµœí˜„ìµ</option>
-				<option value="biz@k-gmp.com">ì´íš¨ì€</option>
-				<option value="biz@k-gmp.com">ë°•ì§„ì£¼</option>
+				<option value="it@k-gmp.com">--¹Þ´Â»ç¶÷--</option>
+				<option value="christine.kim@k-gmp.com">±èÈ¿Áø</option>
+				<option value="it@k-gmp.com">ÃÖÇöÀÍ</option>
+				<option value="biz@k-gmp.com">ÀÌÈ¿Àº</option>
+				<option value="biz@k-gmp.com">¹ÚÁøÁÖ</option>
 				
 			</select>
 		</div>
