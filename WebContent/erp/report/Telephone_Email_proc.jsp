@@ -44,12 +44,15 @@
  		trans.connect(server, null, null);//서버연결
  		trans.sendMessage(msg, msg.getAllRecipients());//메일을 수진자에게 전송
  		trans.close();
+%>
+<<script type="text/javascript">
+	alert("메세지전송에 성공하였습니다.");
+	history.go(-1);
+</script> 		
+<%
  	}catch(Exception e){
  		e.printStackTrace();
  		out.println("<script>alert('메일 보내는데 실패 하였습니다.');history.back();</script>");
  		return;
  	}
- 	//mail 발송 성공시 전 단계 화면으로 이동
- 	out.println("<script>alert('메일을 성공적으로 보냈습니다.');history.go(-1);</script>");
- 
  %>
