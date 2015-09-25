@@ -17,7 +17,7 @@ function sendEmail() {
 } 
 </script>
 <body>
-<b>Telephone_Message</b>_<a style="font-size:11px; color:red; text-decoration:none;" href="javaScript:document.tel.submit()" title="추가">Add</a>
+<b>Telephone_Message</b>_<a style="font-size:11px; color:red; text-decoration:none;" href="javaScript:document.tel.submit()" title="추가">SiteOnly</a>
 <hr>
 	<form action="Telephone_add_proc.jsp" name="tel" method="post">
 		<div id="wrap" style="margin:0 auto; width:250px;">
@@ -34,18 +34,18 @@ function sendEmail() {
 				</tr>
 			</table>
 		</div>
-		<div id="send" style="text-align:center;margin-top:5px;margin-left:50px; ">
+		<div id="send" style="text-align:center;margin-top:5px;margin-left:50px;border:0px;cursor:pointer; ">
 			<select id="MailSender" name="MailSender">
-				<option value="it@k-gmp.com">--From--</option>
+				<option value="call@k-gmp.com">--From--</option>
 				<option value="christine.kim@k-gmp.com">김효진</option>
 				<option value="biz@k-gmp.com">이효은</option>
 				<option value="it@k-gmp.com">최현익</option>
-				<option value="it@k-gmp.com">박진주</option>
+				<option value="fda@k-gmp.com">박진주</option>
 			</select>
 		</div>
 	</form>
 	<div id="btn_send" style="text-align:center;margin-left:190px; margin-top:-20px;">
-		<input type="button" id="sendEm" name="sendEm" value="Send" onclick="sendEmail()"/>
+		<input type="button" id="sendEm" name="sendEm" value="_Email&Site" style="background-color:white;border:0px;color:#0000cd; cursor:pointer;" onclick="sendEmail()"/>
 	</div>
 </body>
 </html>
