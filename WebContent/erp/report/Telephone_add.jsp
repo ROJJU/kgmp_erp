@@ -34,8 +34,8 @@ function sendEmail() {
 				</tr>
 			</table>
 		</div>
-		<div id="send" style="text-align:center;margin-left:40px;border:0px; cursor:pointer; ">
-			<select id="MailSender" name="MailSender">
+		<div id="send" style="text-align:center; margin-top:5px;">
+			<select id="MailSender" name="MailSender" style="border:0px;cursor:pointer;">
 				<option value="call@k-gmp.com">--From--</option>
 				<option value="christine.kim@k-gmp.com">김효진</option>
 				<option value="biz@k-gmp.com">이효은</option>
@@ -45,7 +45,7 @@ function sendEmail() {
 		</div>
 	</form>
 	<div id="btn_send" style="text-align:center;margin-left:190px; margin-top:-20px;">
-		<input type="button" id="sendEm" name="sendEm" value="_Email&Site" style="background-color:white;border:0px;color:#0000cd; cursor:pointer;" onclick="sendEmail()"/>
+		<input type="button" id="sendEm" name="sendEm" value="_Email&Site" style="margin-right:40px; background-color:white;border:0px;color:#0000cd; cursor:pointer;" onclick="sendEmail()"/>
 	</div>
 </body>
 </html>
