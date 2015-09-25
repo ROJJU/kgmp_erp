@@ -45,7 +45,7 @@ function sendEmail() {
 		</div>
 	</form>
 	<div id="btn_send" style="text-align:center;margin-left:190px; margin-top:-20px;">
-		<input type="button" id="sendEm" name="sendEm" value="_Email&Site" style="margin-right:40px; background-color:white;border:0px;color:#0000cd; cursor:pointer;" onclick="sendEmail()"/>
+		<input type="button" id="sendEm" name="sendEm" value="_Email&Site" style="margin-top:3px;margin-right:30px; background-color:white;border:0px;color:#0000cd; cursor:pointer;" onclick="sendEmail()"/>
 	</div>
 </body>
 </html>
