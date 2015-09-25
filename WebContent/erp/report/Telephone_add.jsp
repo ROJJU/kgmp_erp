@@ -34,7 +34,7 @@ function sendEmail() {
 				</tr>
 			</table>
 		</div>
-		<div id="send" style="text-align:center;margin-top:5px;margin-left:50px;border:0px;cursor:pointer; ">
+		<div id="send" style="text-align:center;margin-left:40px;border:0px; cursor:pointer; ">
 			<select id="MailSender" name="MailSender">
 				<option value="call@k-gmp.com">--From--</option>
 				<option value="christine.kim@k-gmp.com">김효진</option>
