@@ -23,7 +23,7 @@
 		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from schedule ORDER BY schedule_seq DESC) where writer=#{writer} and year=#{year} and month=#{month} and day =#{day}) a) WHERE rn BETWEEN 1 AND 5
 	</select>
 	<select id="getMainSchedule" resultType="schedule" >
-		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from schedule ORDER BY day) where state=1) a) WHERE rn BETWEEN 1 AND 6
+		SELECT * FROM (SELECT ROWNUM rn, a.* FROM (SELECT *	FROM (select * from schedule ORDER BY schedule_seq desc) where state=1) a) WHERE rn BETWEEN 1 AND 6
 	</select>
 	<select id="getWeekSchedule" resultType="schedule" parameterType="Map">
 		select * from schedule where year=#{year} and month=#{month} and state=1
