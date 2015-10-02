@@ -16,6 +16,12 @@ String nowDay = year.format(cal.getTime());
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
+<script type="text/javascript">
+function sendEmail() {
+	document.tel.action="Telephone_Modify_Email_proc.jsp";
+	document.tel.submit();
+} 
+</script>
 <body>
 <b>Telephone_Message</b>_<a style="font-size:11px; color:red; text-decoration:none;" href="javaScript:document.tel.submit()" title="추가">Modify</a>_No.<font color="red">${t.telephone_seq}</font>
 <hr>
