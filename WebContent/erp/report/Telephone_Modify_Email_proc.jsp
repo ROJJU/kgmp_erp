@@ -55,8 +55,6 @@
  		return;
  	}
  %>
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="telDAO" class="kgmp.common.dao.Telephone_dao"  scope="session"></jsp:useBean>
 <jsp:useBean id="tel" class="kgmp.common.beans.Telephone"></jsp:useBean>
 <jsp:setProperty property="*" name="tel"/>
