@@ -14,7 +14,7 @@
  %>
  <%
  	String sender = request.getParameter("MailSender");
- 	String receiver = "it@k-gmp.com";
+ 	String receiver = "call@k-gmp.com";
  	String company = request.getParameter("company");
  	String subject = "System Mail";
  	String phone1 = request.getParameter("phone1");
