@@ -17,7 +17,7 @@ String nowDay = year.format(cal.getTime());
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <script type="text/javascript">
-function sendEmail() {
+function ModifyEmail() {
 	document.tel.action="Telephone_Modify_Email_proc.jsp";
 	document.tel.submit();
 } 
@@ -52,7 +52,7 @@ function sendEmail() {
 		</div>
 	</form>
 	<div id="btn_send" style="text-align:center;margin-left:190px; margin-top:-20px;">
-		<input type="button" id="sendEm" name="sendEm" value="_Email&Site" style="margin-top:3px;margin-right:30px; background-color:white;border:0px;color:#0000cd; cursor:pointer;" onclick="sendEmail()"/>
+		<input type="button" id="sendEm" name="sendEm" value="_Email&Site" style="margin-top:3px;margin-right:30px; background-color:white;border:0px;color:#0000cd; cursor:pointer;" onclick="ModifyEmail()"/>
 	</div>
 </body>
 </html>
