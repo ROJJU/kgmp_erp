@@ -45,9 +45,9 @@ function ModifyEmail() {
 			<select id="MailSender" name="MailSender" style="border:0px;cursor:pointer;">
 				<option value="call@k-gmp.com">--From--</option>
 				<option value="christine.kim@k-gmp.com">김효진</option>
-				<option value="biz@k-gmp.com">이효은</option>
 				<option value="it@k-gmp.com">최현익</option>
 				<option value="fda@k-gmp.com">박진주</option>
+				<option value="info@k-gmp.com">박도현</option>
 			</select>
 		</div>
 	</form>
